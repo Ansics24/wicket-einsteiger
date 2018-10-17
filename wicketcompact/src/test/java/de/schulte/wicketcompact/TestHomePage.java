@@ -1,4 +1,4 @@
-package de.schulte.teaching;
+package de.schulte.wicketcompact;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;

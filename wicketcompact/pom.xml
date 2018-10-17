@@ -20,8 +20,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.schulte.teaching</groupId>
-	<artifactId>wicket-einsteiger</artifactId>
+	<groupId>de.schulte.wicketcompact</groupId>
+	<artifactId>wicketcompact</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 		<!-- TODO project name  -->
@@ -41,8 +41,8 @@
 		</license>
 	</licenses>
 	<properties>
-		<wicket.version>8.0.0</wicket.version>
-		<jetty9.version>9.4.7.v20170914</jetty9.version>
+		<wicket.version>8.1.0</wicket.version>
+		<jetty9.version>9.4.12.v20180830</jetty9.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<junit.version>4.12</junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

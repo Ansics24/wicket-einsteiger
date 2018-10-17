@@ -1,4 +1,4 @@
-package de.schulte.teaching;
+package de.schulte.wicketcompact;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;

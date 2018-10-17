@@ -1,4 +1,4 @@
-package de.schulte.teaching;
+package de.schulte.wicketcompact;
 
 import java.lang.management.ManagementFactory;
 
