@@ -7,5 +7,9 @@ public abstract class BaseWebPage extends WebPage {
 
     public BaseWebPage(PageParameters parameters) {
         super(parameters);
+        add(new Header("header"));
+        add(new Footer("footer"));
     }
+
+
 }
