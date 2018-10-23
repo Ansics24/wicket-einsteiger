@@ -3,14 +3,15 @@
 <head>
 </head>
 <body>
-<wicket:panel>
-    <footer class="container">
+<wicket:extend>
+    <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <label>Smart Gastronomy v.1.0</label>
+                <a wicket:id="back">Zurück zum Dashboard</a>
             </div>
         </div>
-    </footer>
-</wicket:panel>
+    </div>
+    <wicket:child/>
+</wicket:extend>
 </body>
 </html>
