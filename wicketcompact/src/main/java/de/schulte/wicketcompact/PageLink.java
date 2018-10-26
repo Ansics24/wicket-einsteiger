@@ -1,6 +1,7 @@
 package de.schulte.wicketcompact;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 public class PageLink extends BookmarkablePageLink<Void> {
@@ -15,6 +16,10 @@ public class PageLink extends BookmarkablePageLink<Void> {
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        setEnabled(!getPage().getClass().equals(this.pageClass));
+        final boolean isOwnPageActive = getPage().getClass().equals(this.pageClass);
+        setEnabled(!isOwnPageActive);
+        if (isOwnPageActive) {
+            add(new AttributeAppender("class", " active disabled"));
+        }
     }
 }
