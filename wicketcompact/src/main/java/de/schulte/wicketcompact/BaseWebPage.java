@@ -9,10 +9,18 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public abstract class BaseWebPage extends WebPage {
 
+    private Tenant tenant;
+
     public BaseWebPage(PageParameters parameters) {
         super(parameters);
         add(new Header("header").setRenderBodyOnly(true));
         add(new Footer("footer").setRenderBodyOnly(true));
+    }
+
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+        this.tenant = Tenant.get();
     }
 
     @Override
