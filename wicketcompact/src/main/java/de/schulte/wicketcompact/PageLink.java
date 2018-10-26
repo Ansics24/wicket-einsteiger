@@ -16,10 +16,15 @@ public class PageLink extends BookmarkablePageLink<Void> {
     @Override
     protected void onInitialize() {
         super.onInitialize();
+        if (getPage().getClass().equals(this.pageClass)) {
+            add(new AttributeAppender("class", " active"));
+        }
+    }
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
         final boolean isOwnPageActive = getPage().getClass().equals(this.pageClass);
         setEnabled(!isOwnPageActive);
-        if (isOwnPageActive) {
-            add(new AttributeAppender("class", " active disabled"));
-        }
     }
 }
