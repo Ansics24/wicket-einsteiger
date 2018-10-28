@@ -2,6 +2,7 @@ package de.schulte.wicketcompact.services;
 
 import de.schulte.wicketcompact.entities.BaseEntity;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,10 @@ public abstract class BaseService<T extends BaseEntity> {
 
     public T get(Long id) {
         return entities.get(id);
+    }
+
+    public Collection<T> listAll() {
+        return entities.values();
     }
 
 }
