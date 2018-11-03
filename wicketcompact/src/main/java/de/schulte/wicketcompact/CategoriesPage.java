@@ -6,7 +6,7 @@ import de.schulte.wicketcompact.services.ServiceRegistry;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigation;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
@@ -38,7 +38,7 @@ public class CategoriesPage extends BaseEntitiesPage {
             }
         };
         categories.setItemsPerPage(3);
-        final PagingNavigator navigator = new PagingNavigator("navigator", categories);
+        final PagingNavigation navigator = new PagingNavigation("navigator", categories);
         add(categories);
         add(navigator);
     }
