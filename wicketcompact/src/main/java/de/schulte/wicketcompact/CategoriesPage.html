@@ -4,26 +4,23 @@
 </head>
 <body>
 <wicket:extend>
-    <h1>Kategorien</h1>
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Bild</th>
-        </tr>
-        <tr wicket:id="categories">
-            <td wicket:id="name">Name</td>
-            <td>
-                <img wicket:id="image" height="100px"/>
-            </td>
-        </tr>
-    </table>
-    <ul class="pagination">
-        <li wicket:id="navigator" class="page-item">
-            <a wicket:id="pageLink" href="#" class="page-link">
-                <span wicket:id="pageNumber"></span>
-            </a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-12">
+            <h1>Kategorien</h1>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Bild</th>
+                </tr>
+                <tr wicket:id="categories">
+                    <td wicket:id="name">Name</td>
+                    <td>
+                        <img wicket:id="image" height="100px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </wicket:extend>
 </body>
 </html>

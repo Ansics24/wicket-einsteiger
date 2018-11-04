@@ -19,6 +19,16 @@ public class Article extends BaseEntity {
 
     private String description;
 
+    public Article(Category category, String name, String imageUrl, BigDecimal price, String description) {
+        this.category = category;
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.description = description;
+        this.setValidFrom(LocalDate.of(2018, 1, 1));
+        this.setValidTo(LocalDate.MAX);
+    }
+
     public Category getCategory() {
         return category;
     }

@@ -4,7 +4,33 @@
 </head>
 <body>
 <wicket:extend>
-    TODO Artikel
+    <div class="row">
+        <div class="col-12">
+            <h1>Artikel</h1>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Kategorie</th>
+                    <th>Beschreibung</th>
+                    <th>Preis</th>
+                    <th>Bild</th>
+                    <th>Gültig ab</th>
+                    <th>Gültig bis</th>
+                </tr>
+                <tr wicket:id="articles">
+                    <td wicket:id="name"></td>
+                    <td wicket:id="category"></td>
+                    <td wicket:id="description"></td>
+                    <td wicket:id="price"></td>
+                    <td>
+                        <img wicket:id="image" height="50px"/>
+                    </td>
+                    <td wicket:id="validFrom"></td>
+                    <td wicket:id="validTo"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </wicket:extend>
 </body>
 </html>
