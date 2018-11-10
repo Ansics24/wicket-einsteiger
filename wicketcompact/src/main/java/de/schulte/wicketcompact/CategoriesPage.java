@@ -1,6 +1,7 @@
 package de.schulte.wicketcompact;
 
 import de.schulte.wicketcompact.entities.Category;
+import de.schulte.wicketcompact.services.CategoryService;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
@@ -10,7 +11,7 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.LambdaModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class CategoriesPage extends BaseEntitiesPage {
@@ -26,9 +27,9 @@ public class CategoriesPage extends BaseEntitiesPage {
             @Override
             protected void populateItem(Item<Category> item) {
                 final Category category = item.getModelObject();
-                item.setModel(new CompoundPropertyModel<>(category));
+                item.setModel(new CompoundPropertyModel<>(item.getModel()));
                 item.add(new Label("name"));
-                final AttributeAppender srcAppender = new AttributeAppender("src", LambdaModel.of(category::getImageUrl));
+                final AttributeAppender srcAppender = new AttributeAppender("src", new PropertyModel<>(new EntityModel<>(category.getId(), CategoryService.class), "imageUrl"));
                 item.add(new WebMarkupContainer("image").add(srcAppender));
             }
         };

@@ -20,8 +20,7 @@ public class TablesPage extends BaseEntitiesPage {
 
             @Override
             protected void populateItem(Item<Table> item) {
-                Table table = item.getModelObject();
-                item.setModel(new CompoundPropertyModel<>(table));
+                item.setModel(new CompoundPropertyModel<>(item.getModel()));
                 item.add(new Label("name"));
                 item.add(new Label("seatCount"));
                 item.add(new Label("orderableElectronically"));
