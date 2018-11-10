@@ -1,8 +1,6 @@
 package de.schulte.wicketcompact;
 
 import de.schulte.wicketcompact.entities.Article;
-import de.schulte.wicketcompact.services.ArticleService;
-import de.schulte.wicketcompact.services.ServiceRegistry;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -10,12 +8,9 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
-import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-
-import java.util.ArrayList;
 
 public class ArticlesPage extends BaseEntitiesPage {
 
@@ -23,7 +18,7 @@ public class ArticlesPage extends BaseEntitiesPage {
 
     public ArticlesPage(PageParameters parameters) {
         super(parameters);
-        IDataProvider<Article> dataProvider = new ListDataProvider<>(new ArrayList<>(ServiceRegistry.get(ArticleService.class).listAll()));
+        IDataProvider<Article> dataProvider = new ArticlesDataProvider();
         this.articles = new DataView<Article>("articles", dataProvider) {
 
             @Override

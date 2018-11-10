@@ -1,8 +1,6 @@
 package de.schulte.wicketcompact.entities;
 
-import java.io.Serializable;
-
-public abstract class BaseEntity implements Serializable {
+public abstract class BaseEntity {
 
     private Long id;
 
