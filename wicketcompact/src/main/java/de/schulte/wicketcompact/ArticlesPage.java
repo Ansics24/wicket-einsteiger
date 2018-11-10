@@ -11,6 +11,8 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import java.util.ArrayList;
@@ -27,13 +29,14 @@ public class ArticlesPage extends BaseEntitiesPage {
             @Override
             protected void populateItem(Item<Article> item) {
                 final Article article = item.getModelObject();
-                item.add(new Label("name", article.getName()));
-                item.add(new Label("category", article.getCategory().getName()));
-                item.add(new Label("description", article.getDescription()));
-                item.add(new Label("price", article.getPrice()));
-                item.add(new Label("validFrom", article.getValidFrom()));
-                item.add(new Label("validTo", article.getValidTo()));
-                final AttributeAppender srcAppender = new AttributeAppender("src", item.getModelObject().getImageUrl());
+                item.setModel(new CompoundPropertyModel<>(article));
+                item.add(new Label("name"));
+                item.add(new Label("category.name"));
+                item.add(new Label("description"));
+                item.add(new Label("price"));
+                item.add(new Label("validFrom"));
+                item.add(new Label("validTo"));
+                final AttributeAppender srcAppender = new AttributeAppender("src", LambdaModel.of(article::getImageUrl));
                 item.add(new WebMarkupContainer("image").add(srcAppender));
             }
         };

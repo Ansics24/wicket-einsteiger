@@ -9,6 +9,7 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import java.util.ArrayList;
@@ -25,9 +26,10 @@ public class TablesPage extends BaseEntitiesPage {
             @Override
             protected void populateItem(Item<Table> item) {
                 Table table = item.getModelObject();
-                item.add(new Label("name", table.getName()));
-                item.add(new Label("seatCount", table.getSeatCount()));
-                item.add(new Label("orderableElectronically", table.getOrderableElectronically()));
+                item.setModel(new CompoundPropertyModel<>(table));
+                item.add(new Label("name"));
+                item.add(new Label("seatCount"));
+                item.add(new Label("orderableElectronically"));
             }
         };
     }
