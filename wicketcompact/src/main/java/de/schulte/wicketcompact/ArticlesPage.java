@@ -32,7 +32,7 @@ public class ArticlesPage extends BaseEntitiesPage {
                 item.add(new Label("price"));
                 item.add(new Label("validFrom"));
                 item.add(new Label("validTo"));
-                final AttributeAppender srcAppender = new AttributeAppender("src", new PropertyModel<>(new EntityModel<>(article.getId(), ArticleService.class), "imageUrl"));
+                final AttributeAppender srcAppender = new AttributeAppender("src", new PropertyModel<>(new EntityModel<>(article, ArticleService.class), "imageUrl"));
                 item.add(new WebMarkupContainer("image").add(srcAppender));
             }
         };

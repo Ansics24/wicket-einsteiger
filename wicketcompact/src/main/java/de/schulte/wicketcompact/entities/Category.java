@@ -11,6 +11,10 @@ public class Category extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
+    public Category() {
+
+    }
+
     public String getName() {
         return name;
     }

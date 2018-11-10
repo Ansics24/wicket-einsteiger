@@ -22,6 +22,6 @@ public class ArticlesDataProvider extends SortableDataProvider<Article, Void> {
 
     @Override
     public IModel<Article> model(Article article) {
-        return new EntityModel<>(article.getId(), ArticleService.class);
+        return new EntityModel<>(article, ArticleService.class);
     }
 }

@@ -22,6 +22,6 @@ public class TablesDataProvider extends SortableDataProvider<Table, Void> {
 
     @Override
     public IModel<Table> model(Table table) {
-        return new EntityModel<>(table.getId(), TableService.class);
+        return new EntityModel<>(table, TableService.class);
     }
 }
