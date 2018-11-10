@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
+import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class CategoriesPage extends BaseEntitiesPage {
@@ -23,8 +24,9 @@ public class CategoriesPage extends BaseEntitiesPage {
 
             @Override
             protected void populateItem(Item<Category> item) {
-                item.add(new Label("name", item.getModelObject().getName()));
-                final AttributeAppender srcAppender = new AttributeAppender("src", item.getModelObject().getImageUrl());
+                final Category category = item.getModelObject();
+                item.add(new Label("name", LambdaModel.of(category::getName)));
+                final AttributeAppender srcAppender = new AttributeAppender("src", LambdaModel.of(category::getImageUrl));
                 item.add(new WebMarkupContainer("image").add(srcAppender));
             }
         };
