@@ -17,6 +17,7 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.validation.validator.RangeValidator;
@@ -82,11 +83,11 @@ public class ArticlesPage extends BaseEntitiesPage {
         add(new FeedbackPanel("feedback"));
         form.setModel(new CompoundPropertyModel<>(new EntityModel<>(ArticleService.class)));
         form.add(new TextField<String>("name").setRequired(true));
-        form.add(new TextArea<String>("description").setRequired(true));
-        form.add(new TextField<>("price").setRequired(true).add(new RangeValidator<>(BigDecimal.ZERO, new BigDecimal("20"))));
-        form.add(new LocalDateTextField("validFrom", FormatStyle.SHORT).add(new RangeValidator<>(LocalDate.now(), LocalDate.now().plusDays(365))));
-        form.add(new LocalDateTextField("validTo", FormatStyle.SHORT).add(new RangeValidator<>(LocalDate.now().plusDays(1), LocalDate.MAX)));
-        form.add(new TextField<String>("imageUrl").setRequired(true).add(new UrlValidator()));
+        form.add(new TextArea<String>("description").setRequired(true).setLabel(Model.of("Beschreibung")));
+        form.add(new TextField<>("price").setRequired(true).setLabel(Model.of("Preis")).add(new RangeValidator<>(BigDecimal.ZERO, new BigDecimal("20"))));
+        form.add(new LocalDateTextField("validFrom", FormatStyle.SHORT).setLabel(Model.of("Gültig ab")).add(RangeValidator.maximum(LocalDate.now().plusMonths(3))));
+        form.add(new LocalDateTextField("validTo", FormatStyle.SHORT).setLabel(Model.of("Gültig bis")).add(RangeValidator.minimum(LocalDate.now().plusDays(1))));
+        form.add(new TextField<String>("imageUrl").setRequired(true).setLabel(Model.of("Bild-URL")).add(new UrlValidator()));
     }
 
     @Override
