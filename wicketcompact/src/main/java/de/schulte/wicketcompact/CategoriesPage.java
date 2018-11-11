@@ -12,11 +12,13 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.validation.validator.UrlValidator;
 
 public class CategoriesPage extends BaseEntitiesPage {
 
@@ -70,10 +72,11 @@ public class CategoriesPage extends BaseEntitiesPage {
     }
 
     private void initializeForm() {
+        add(new FeedbackPanel("feedback"));
         form.setModel(new CompoundPropertyModel<>(formEntityModel));
         add(form);
-        form.add(new TextField<String>("name"));
-        form.add(new TextField<String>("imageUrl"));
+        form.add(new TextField<String>("name").setRequired(true));
+        form.add(new TextField<String>("imageUrl").setRequired(true).add(new UrlValidator()));
         form.setVisible(false);
     }
 
