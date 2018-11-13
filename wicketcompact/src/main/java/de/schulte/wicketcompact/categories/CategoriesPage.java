@@ -1,5 +1,7 @@
-package de.schulte.wicketcompact;
+package de.schulte.wicketcompact.categories;
 
+import de.schulte.wicketcompact.BaseEntitiesPage;
+import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.CategoryService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
@@ -75,7 +77,7 @@ public class CategoriesPage extends BaseEntitiesPage {
         add(new FeedbackPanel("feedback"));
         form.setModel(new CompoundPropertyModel<>(formEntityModel));
         add(form);
-        form.add(new TextField<String>("name").setRequired(true));
+        form.add(new TextField<String>("name").setRequired(true).add(new UniqueCategoryNameValidator()));
         form.add(new TextField<String>("imageUrl").setRequired(true).add(new UrlValidator()));
         form.setVisible(false);
     }

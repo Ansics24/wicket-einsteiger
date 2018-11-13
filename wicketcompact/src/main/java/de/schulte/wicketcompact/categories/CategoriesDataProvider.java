@@ -1,5 +1,6 @@
-package de.schulte.wicketcompact;
+package de.schulte.wicketcompact.categories;
 
+import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.CategoryService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
