@@ -13,9 +13,7 @@ public class UniqueCategoryNameValidator implements org.apache.wicket.validation
         final String givenCategoryName = validatable.getValue();
         final Category existingCategoryWithSameName = ServiceRegistry.get(CategoryService.class).getByName(givenCategoryName);
         if (existingCategoryWithSameName != null) {
-            final ValidationError error = new ValidationError(this);
-            error.setVariable("suggestedCategory", "Weine");
-            validatable.error(error);
+            validatable.error(new ValidationError(this));
         }
     }
 
