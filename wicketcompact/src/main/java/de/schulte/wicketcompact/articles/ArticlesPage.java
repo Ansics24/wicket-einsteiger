@@ -1,5 +1,9 @@
-package de.schulte.wicketcompact;
+package de.schulte.wicketcompact.articles;
 
+import de.schulte.wicketcompact.BaseEntitiesPage;
+import de.schulte.wicketcompact.EntityModel;
+import de.schulte.wicketcompact.SuccessFeedbackPanel;
+import de.schulte.wicketcompact.ValidationErrorFeedbackPanel;
 import de.schulte.wicketcompact.entities.Article;
 import de.schulte.wicketcompact.services.ArticleService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
@@ -12,7 +16,6 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
@@ -38,6 +41,7 @@ public class ArticlesPage extends BaseEntitiesPage {
             super.onSubmit();
             form.setVisible(false);
             ServiceRegistry.get(ArticleService.class).save(form.getModelObject());
+            form.success("Artikel wurde gespeichert");
         }
     };
 
@@ -80,7 +84,8 @@ public class ArticlesPage extends BaseEntitiesPage {
     private void initializeForm() {
         form.setVisible(false);
         add(form);
-        add(new FeedbackPanel("feedback"));
+        add(new ValidationErrorFeedbackPanel("validationFeedback"));
+        add(new SuccessFeedbackPanel("successFeedback"));
         form.setModel(new CompoundPropertyModel<>(new EntityModel<>(ArticleService.class)));
         form.add(new TextField<String>("name").setRequired(true));
         form.add(new TextArea<String>("description").setRequired(true).setLabel(Model.of("Beschreibung")));
