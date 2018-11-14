@@ -2,6 +2,7 @@ package de.schulte.wicketcompact;
 
 import de.schulte.wicketcompact.articles.ArticlesPage;
 import de.schulte.wicketcompact.categories.CategoriesPage;
+import de.schulte.wicketcompact.tables.TablesPage;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.image.ContextImage;

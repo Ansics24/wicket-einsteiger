@@ -1,5 +1,6 @@
-package de.schulte.wicketcompact;
+package de.schulte.wicketcompact.tables;
 
+import de.schulte.wicketcompact.BaseEntitiesPage;
 import de.schulte.wicketcompact.entities.Table;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;

@@ -1,5 +1,6 @@
-package de.schulte.wicketcompact;
+package de.schulte.wicketcompact.tables;
 
+import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.entities.Table;
 import de.schulte.wicketcompact.services.ServiceRegistry;
 import de.schulte.wicketcompact.services.TableService;
