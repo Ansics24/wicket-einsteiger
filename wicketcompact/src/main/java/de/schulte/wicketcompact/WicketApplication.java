@@ -20,7 +20,6 @@ public class WicketApplication extends WebApplication
 	{
 		return HomePage.class;
 	}
-
 	/**
 	 * @see org.apache.wicket.Application#init()
 	 */

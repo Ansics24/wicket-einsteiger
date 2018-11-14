@@ -2,6 +2,8 @@ package de.schulte.wicketcompact.categories;
 
 import de.schulte.wicketcompact.BaseEntitiesPage;
 import de.schulte.wicketcompact.EntityModel;
+import de.schulte.wicketcompact.SuccessFeedbackPanel;
+import de.schulte.wicketcompact.ValidationErrorFeedbackPanel;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.CategoryService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
@@ -15,7 +17,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -34,6 +35,7 @@ public class CategoriesPage extends BaseEntitiesPage {
             super.onSubmit();
             ServiceRegistry.get(CategoryService.class).save(this.getModelObject());
             form.setVisible(false);
+            form.success("Kategorie wurde gespeichert");
         }
     };
 
@@ -74,7 +76,8 @@ public class CategoriesPage extends BaseEntitiesPage {
     }
 
     private void initializeForm() {
-        add(new FeedbackPanel("feedback"));
+        add(new ValidationErrorFeedbackPanel("validationFeedback"));
+        add(new SuccessFeedbackPanel("successFeedback"));
         form.setModel(new CompoundPropertyModel<>(formEntityModel));
         add(form);
         form.add(new TextField<String>("name").add(new PropertyValidator<>()));
