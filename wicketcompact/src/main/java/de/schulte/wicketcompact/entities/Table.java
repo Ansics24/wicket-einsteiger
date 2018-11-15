@@ -14,6 +14,10 @@ public class Table extends BaseEntity {
         this.orderableElectronically = Boolean.TRUE;
     }
 
+    public Table() {
+
+    }
+
     public String getName() {
         return name;
     }
