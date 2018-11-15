@@ -5,15 +5,15 @@ import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.SuccessFeedbackPanel;
 import de.schulte.wicketcompact.ValidationErrorFeedbackPanel;
 import de.schulte.wicketcompact.entities.Article;
+import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.ArticleService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
+import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.form.datetime.LocalDateTextField;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
@@ -62,7 +62,7 @@ public class ArticlesPage extends BaseEntitiesPage {
                 item.add(new Label("validTo"));
                 final AttributeAppender srcAppender = new AttributeAppender("src", new PropertyModel<>(new EntityModel<>(article, ArticleService.class), "imageUrl"));
                 item.add(new WebMarkupContainer("image").add(srcAppender));
-            }
+            } 
         };
     }
 
@@ -88,6 +88,7 @@ public class ArticlesPage extends BaseEntitiesPage {
         add(new SuccessFeedbackPanel("successFeedback"));
         form.setModel(new CompoundPropertyModel<>(new EntityModel<>(ArticleService.class)));
         form.add(new TextField<String>("name").setRequired(true));
+        form.add(new DropDownChoice<Category>("category", new CategoryListModel(), new ChoiceRenderer<Category>("name", "id")).add(new PropertyValidator<>()));
         form.add(new TextArea<String>("description").setRequired(true).setLabel(Model.of("Beschreibung")));
         form.add(new TextField<>("price").setRequired(true).setLabel(Model.of("Preis")).add(new RangeValidator<>(BigDecimal.ZERO, new BigDecimal("20"))));
         form.add(new LocalDateTextField("validFrom", FormatStyle.SHORT).setLabel(Model.of("Gültig ab")).add(RangeValidator.maximum(LocalDate.now().plusMonths(3))));
