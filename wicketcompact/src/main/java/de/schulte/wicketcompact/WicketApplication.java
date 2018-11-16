@@ -1,5 +1,8 @@
 package de.schulte.wicketcompact;
 
+import de.schulte.wicketcompact.converter.BooleanConverter;
+import org.apache.wicket.ConverterLocator;
+import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -30,4 +33,11 @@ public class WicketApplication extends WebApplication
         new BeanValidationConfiguration().configure(this);
 		// add your configuration here
 	}
+
+    @Override
+    protected IConverterLocator newConverterLocator() {
+        final ConverterLocator defaultConverterLocator = new ConverterLocator();
+        defaultConverterLocator.set(Boolean.class, new BooleanConverter());
+        return defaultConverterLocator;
+    }
 }
