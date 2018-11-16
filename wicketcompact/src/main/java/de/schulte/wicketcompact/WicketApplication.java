@@ -1,11 +1,16 @@
 package de.schulte.wicketcompact;
 
 import de.schulte.wicketcompact.converter.BooleanConverter;
+import de.schulte.wicketcompact.converter.CurrencyConverter;
+import de.schulte.wicketcompact.converter.LocalDateConverter;
 import org.apache.wicket.ConverterLocator;
 import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Application object for your web application.
@@ -38,6 +43,8 @@ public class WicketApplication extends WebApplication
     protected IConverterLocator newConverterLocator() {
         final ConverterLocator defaultConverterLocator = new ConverterLocator();
         defaultConverterLocator.set(Boolean.class, new BooleanConverter());
+        defaultConverterLocator.set(LocalDate.class, new LocalDateConverter());
+        defaultConverterLocator.set(BigDecimal.class, new CurrencyConverter());
         return defaultConverterLocator;
     }
 }

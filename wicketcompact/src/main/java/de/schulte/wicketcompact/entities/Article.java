@@ -26,7 +26,7 @@ public class Article extends BaseEntity {
         this.price = price;
         this.description = description;
         this.setValidFrom(LocalDate.of(2018, 1, 1));
-        this.setValidTo(LocalDate.MAX);
+        this.setValidTo(LocalDate.of(9999, 12, 31));
     }
 
     public Article() {
