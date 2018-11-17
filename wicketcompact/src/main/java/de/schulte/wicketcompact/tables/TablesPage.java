@@ -3,6 +3,7 @@ package de.schulte.wicketcompact.tables;
 import de.schulte.wicketcompact.BaseEntitiesPage;
 import de.schulte.wicketcompact.entities.Table;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
@@ -25,6 +26,7 @@ public class TablesPage extends BaseEntitiesPage {
                 item.add(new Label("name"));
                 item.add(new Label("seatCount"));
                 item.add(new Label("orderableElectronically"));
+                item.add(new BookmarkablePageLink<>("modifyTable", ModifyTablePage.class, new PageParameters().add("id", item.getModelObject().getId())));
             }
         };
     }

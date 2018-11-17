@@ -29,6 +29,7 @@ public class EditTable extends Panel {
 
     public EditTable(String id) {
         super(id);
+        form.setModel(new CompoundPropertyModel<>(new EntityModel<>(TableService.class)));
     }
 
     @Override
@@ -36,8 +37,6 @@ public class EditTable extends Panel {
         super.onInitialize();
         add(form);
         add(new ValidationErrorFeedbackPanel("validationFeedback"));
-        form.setModel(new CompoundPropertyModel<>(new EntityModel<>(TableService.class)));
-        form.setModelObject(new Table());
         form.add(new TextField<String>("name").add(new PropertyValidator<>()));
         form.add(new CheckBox("orderableElectronically").add(new PropertyValidator<>()));
         addSeatCountChoiceToForm();
@@ -55,6 +54,10 @@ public class EditTable extends Panel {
         };
         form.add(radioGroup.add(new PropertyValidator<>()));
         radioGroup.add(choices);
+    }
+
+    void setTable(Table table) {
+        form.setModelObject(table);
     }
 
 }
