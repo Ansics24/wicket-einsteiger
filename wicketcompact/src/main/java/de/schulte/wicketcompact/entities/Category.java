@@ -12,7 +12,7 @@ public class Category extends BaseEntity {
     private String name;
 
     @NotNull
-    @Pattern(regexp = "http[s]?://.*\\.jpg", message = "{category.imageurl.invalid}")
+    @Pattern(regexp = "http[s]?://.*\\.jpg", message = "{imageurl.invalid}")
     private String imageUrl;
 
     public Category(String name, String imageUrl) {

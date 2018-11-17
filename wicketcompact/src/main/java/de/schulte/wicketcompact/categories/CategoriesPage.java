@@ -2,42 +2,23 @@ package de.schulte.wicketcompact.categories;
 
 import de.schulte.wicketcompact.BaseEntitiesPage;
 import de.schulte.wicketcompact.EntityModel;
-import de.schulte.wicketcompact.SuccessFeedbackPanel;
-import de.schulte.wicketcompact.ValidationErrorFeedbackPanel;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.CategoryService;
-import de.schulte.wicketcompact.services.ServiceRegistry;
-import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class CategoriesPage extends BaseEntitiesPage {
 
-    private final EntityModel<Category, CategoryService> formEntityModel = new EntityModel<>(CategoryService.class);
     private DataView<Category> categories;
     private final SortableDataProvider<Category, String> dataProvider;
-    private final Form form = new Form<Category>("form") {
-
-        @Override
-        protected void onSubmit() {
-            super.onSubmit();
-            ServiceRegistry.get(CategoryService.class).save(this.getModelObject());
-            form.setVisible(false);
-            form.success("Kategorie wurde gespeichert");
-        }
-    };
 
     public CategoriesPage(PageParameters parameters) {
         super(parameters);
@@ -65,25 +46,6 @@ public class CategoriesPage extends BaseEntitiesPage {
         categories.setItemsPerPage(3);
         add(categories);
         add(new OrderByBorder<>("orderByName", "name", this.dataProvider));
-        add(new Link<String>("newCategory") {
-            @Override
-            public void onClick() {
-                form.setVisible(true);
-                formEntityModel.setObject(new Category());
-            }
-        });
-        initializeForm();
     }
-
-    private void initializeForm() {
-        add(new ValidationErrorFeedbackPanel("validationFeedback"));
-        add(new SuccessFeedbackPanel("successFeedback"));
-        form.setModel(new CompoundPropertyModel<>(formEntityModel));
-        add(form);
-        form.add(new TextField<String>("name").add(new PropertyValidator<>()));
-        form.add(new TextField<String>("imageUrl").add(new PropertyValidator<>()));
-        form.setVisible(false);
-    }
-
 
 }

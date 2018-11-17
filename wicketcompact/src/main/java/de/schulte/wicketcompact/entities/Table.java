@@ -1,9 +1,13 @@
 package de.schulte.wicketcompact.entities;
 
+import javax.validation.constraints.NotNull;
+
 public class Table extends BaseEntity {
 
+    @NotNull
     private String name;
 
+    @NotNull
     private Integer seatCount;
 
     private Boolean orderableElectronically;

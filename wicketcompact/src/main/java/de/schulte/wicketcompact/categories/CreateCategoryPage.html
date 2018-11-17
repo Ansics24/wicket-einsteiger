@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+</head>
+<body>
+<wicket:extend>
+    <h1>Neue Kategorie anlegen</h1>
+    <div wicket:id="validationFeedback"></div>
+    <form wicket:id="form">
+        <div class="form-group row">
+            <label class="col-3 col-form-label">Name</label>
+            <input type="text" class="col-9 form-control" wicket:id="name">
+        </div>
+        <div class="form-group row">
+            <label class="col-3 col-form-label">Bild-URL</label>
+            <input type="text" class="col-9 form-control" wicket:id="imageUrl">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <input type="submit" value="Speichern" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+</wicket:extend>
+</body>
+</html>
