@@ -45,14 +45,6 @@ public class ArticlesPage extends BaseEntitiesPage {
     protected void onInitialize() {
         super.onInitialize();
         add(this.articles);
-        add(new Link<String>("newArticle") {
-
-            @Override
-            public void onClick() {
-                form.setVisible(true);
-                form.setModelObject(new Article());
-            }
-        });
     }
 
     @Override
