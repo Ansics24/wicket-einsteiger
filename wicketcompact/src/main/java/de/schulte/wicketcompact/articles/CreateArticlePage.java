@@ -1,6 +1,7 @@
 package de.schulte.wicketcompact.articles;
 
 import de.schulte.wicketcompact.BaseWebPage;
+import de.schulte.wicketcompact.entities.Article;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class CreateArticlePage extends BaseWebPage {
@@ -12,7 +13,7 @@ public class CreateArticlePage extends BaseWebPage {
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        add(new EditArticle("editArticle"));
+        add(new EditArticle("editArticle").setArticle(new Article()));
     }
 
 }

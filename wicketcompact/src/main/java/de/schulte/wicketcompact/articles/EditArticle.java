@@ -28,19 +28,18 @@ public class EditArticle extends Panel {
 
     public EditArticle(String id) {
         super(id);
+        form.setModel(new CompoundPropertyModel<>(new EntityModel<>(ArticleService.class)));
     }
 
     @Override
     protected void onInitialize() {
         super.onInitialize();
         initializeForm();
-        form.setModelObject(new Article());
     }
 
     private void initializeForm() {
         add(form);
         add(new ValidationErrorFeedbackPanel("validationFeedback"));
-        form.setModel(new CompoundPropertyModel<>(new EntityModel<>(ArticleService.class)));
         form.add(new TextField<String>("name").add(new PropertyValidator<>()));
         form.add(new DropDownChoice<>("category", new CategoryListModel(), new ChoiceRenderer<>("name", "id")).add(new PropertyValidator<>()));
         form.add(new TextArea<String>("description").add(new PropertyValidator<>()).setLabel(Model.of("Beschreibung")));
@@ -48,6 +47,11 @@ public class EditArticle extends Panel {
         form.add(new TextField<>("validFrom").setLabel(Model.of("Gültig ab")).add(RangeValidator.maximum(LocalDate.now().plusMonths(3))));
         form.add(new TextField<>("validTo").setLabel(Model.of("Gültig bis")).add(RangeValidator.minimum(LocalDate.now().plusDays(1))));
         form.add(new TextField<String>("imageUrl").add(new PropertyValidator<>()).setLabel(Model.of("Bild-URL")));
+    }
+
+    EditArticle setArticle(Article article) {
+        this.form.setModelObject(article);
+        return this;
     }
 
 }

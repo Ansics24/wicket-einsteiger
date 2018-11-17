@@ -25,17 +25,21 @@ public class EditCategory extends Panel {
 
     public EditCategory(String id) {
         super(id);
+        this.form.setModel(new CompoundPropertyModel<>(new EntityModel<>(CategoryService.class)));
     }
 
     @Override
     protected void onInitialize() {
         super.onInitialize();
         add(new ValidationErrorFeedbackPanel("validationFeedback"));
-        form.setModel(new CompoundPropertyModel<>(new EntityModel<>(CategoryService.class)));
-        form.setModelObject(new Category());
         add(form);
         form.add(new TextField<String>("name").add(new PropertyValidator<>()));
         form.add(new TextField<String>("imageUrl").add(new PropertyValidator<>()));
+    }
+
+    EditCategory setCategory(Category category) {
+        this.form.setModelObject(category);
+        return this;
     }
 
 }

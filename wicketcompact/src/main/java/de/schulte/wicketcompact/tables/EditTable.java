@@ -45,7 +45,7 @@ public class EditTable extends Panel {
     private void addSeatCountChoiceToForm() {
         final RadioGroup<Integer> radioGroup = new RadioGroup<>("seatCount");
         radioGroup.setRenderBodyOnly(false);
-        final ListView<Integer> choices = new ListView<Integer>("choices", Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)) {
+        final ListView<Integer> choices = new ListView<Integer>("choices", Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)) {
             @Override
             protected void populateItem(ListItem<Integer> item) {
                 item.add(new Label("seatCountLabel", item.getModelObject()));

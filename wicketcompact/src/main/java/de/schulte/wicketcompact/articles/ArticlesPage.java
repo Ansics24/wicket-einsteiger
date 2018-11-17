@@ -7,7 +7,7 @@ import de.schulte.wicketcompact.services.ArticleService;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
@@ -37,7 +37,8 @@ public class ArticlesPage extends BaseEntitiesPage {
                 item.add(new Label("validTo"));
                 final AttributeAppender srcAppender = new AttributeAppender("src", new PropertyModel<>(new EntityModel<>(article, ArticleService.class), "imageUrl"));
                 item.add(new WebMarkupContainer("image").add(srcAppender));
-            } 
+                item.add(new BookmarkablePageLink<>("modifyArticle", ModifyArticlePage.class, new PageParameters().add("id", item.getModelObject().getId())));
+            }
         };
     }
 
