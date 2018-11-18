@@ -39,7 +39,7 @@ public class EditArticle extends Panel {
     protected void onInitialize() {
         super.onInitialize();
         initializeForm();
-        add(new ExternalLink("help", new Model<String>() {
+        this.form.add(new ExternalLink("help", new Model<String>() {
 
             @Override
             public String getObject() {
