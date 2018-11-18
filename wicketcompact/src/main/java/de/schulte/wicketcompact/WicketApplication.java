@@ -1,8 +1,15 @@
 package de.schulte.wicketcompact;
 
+import de.schulte.wicketcompact.articles.CreateArticlePage;
+import de.schulte.wicketcompact.articles.ModifyArticlePage;
+import de.schulte.wicketcompact.categories.CategoriesPage;
+import de.schulte.wicketcompact.categories.CreateCategoryPage;
+import de.schulte.wicketcompact.categories.ModifyCategoryPage;
 import de.schulte.wicketcompact.converter.BooleanConverter;
 import de.schulte.wicketcompact.converter.CurrencyConverter;
 import de.schulte.wicketcompact.converter.LocalDateConverter;
+import de.schulte.wicketcompact.tables.CreateTablePage;
+import de.schulte.wicketcompact.tables.ModifyTablePage;
 import org.apache.wicket.ConverterLocator;
 import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
@@ -36,7 +43,19 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
         new BeanValidationConfiguration().configure(this);
-		// add your configuration here
+
+        mountPage("/articles", ArticlesPage.class);
+        mountPage("/categories", CategoriesPage.class);
+        mountPage("/tables", TablesPage.class);
+
+        mountPage("/article/${id}", ModifyArticlePage.class);
+		mountPage("/article/new", CreateArticlePage.class);
+
+		mountPage("/category/${id}", ModifyCategoryPage.class);
+		mountPage("/category/new", CreateCategoryPage.class);
+
+		mountPage("/table/${id}", ModifyTablePage.class);
+		mountPage("/table/new", CreateTablePage.class);
 	}
 
     @Override
