@@ -1,5 +1,6 @@
 package de.schulte.wicketcompact;
 
+import de.schulte.wicketcompact.articles.ArticlesPage;
 import de.schulte.wicketcompact.articles.CreateArticlePage;
 import de.schulte.wicketcompact.articles.ModifyArticlePage;
 import de.schulte.wicketcompact.categories.CategoriesPage;
@@ -10,6 +11,7 @@ import de.schulte.wicketcompact.converter.CurrencyConverter;
 import de.schulte.wicketcompact.converter.LocalDateConverter;
 import de.schulte.wicketcompact.tables.CreateTablePage;
 import de.schulte.wicketcompact.tables.ModifyTablePage;
+import de.schulte.wicketcompact.tables.TablesPage;
 import org.apache.wicket.ConverterLocator;
 import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
