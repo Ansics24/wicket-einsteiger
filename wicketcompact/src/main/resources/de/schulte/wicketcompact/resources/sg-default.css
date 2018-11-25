@@ -5,3 +5,11 @@
 .fas {
     color: grey;
 }
+
+.w_captionText {
+    font-size: 1em;
+}
+
+.w_content_container {
+    padding: 10px;
+}
