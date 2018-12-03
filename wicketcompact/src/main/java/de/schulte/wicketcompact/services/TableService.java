@@ -2,6 +2,9 @@ package de.schulte.wicketcompact.services;
 
 import de.schulte.wicketcompact.entities.Table;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class TableService extends BaseService<Table> {
 
     public TableService() {
@@ -16,5 +19,14 @@ public class TableService extends BaseService<Table> {
         save(honduras);
         save(mexiko);
         save(kuba);
+    }
+
+    public Iterable<String> listTableNamesContaining(String nameFragment) {
+        return listAll().stream().filter(table -> table.getName().contains(nameFragment)).map(table -> table.getName()).collect(Collectors.toList());
+    }
+
+    public Table getByName(String name) {
+        final List<Table> filtered = listAll().stream().filter(table -> table.getName().equals(name)).collect(Collectors.toList());
+        return filtered.isEmpty() ? null : filtered.get(0);
     }
 }

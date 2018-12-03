@@ -4,6 +4,13 @@
 </head>
 <body>
 <wicket:extend>
+    <form class="row" wicket:id="tableQuickSearchForm">
+        <label class="col-3 col-form-label">Quick-Search</label>
+        <input type="text" wicket:id="tableQuickSearch" class="col-7 form-control">
+        <div class="col-1">
+            <input type="button" wicket:id="quickEditTable" value="Bearbeiten" class="btn">
+        </div>
+    </form>
     <div class="row">
         <div class="col-12">
             <h1>Tische</h1>
