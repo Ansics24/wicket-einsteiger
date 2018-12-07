@@ -1,9 +1,11 @@
 package de.schulte.wicketcompact.services;
 
 import de.schulte.wicketcompact.entities.Article;
+import de.schulte.wicketcompact.entities.Category;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArticleService extends BaseService<Article> {
 
@@ -15,4 +17,9 @@ public class ArticleService extends BaseService<Article> {
 
         save(cappuccino);
     }
+
+    public List<Article> listByCategory(final Category category) {
+        return listAll().stream().filter(article -> article.getCategory().equals(category)).collect(Collectors.toList());
+    }
+
 }
