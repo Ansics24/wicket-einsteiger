@@ -2,7 +2,7 @@ package de.schulte.wicketcompact.categories;
 
 import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.LoadingIndicatingAjaxSubmitLink;
-import de.schulte.wicketcompact.ValidationErrorFeedbackPanel;
+import de.schulte.wicketcompact.SgFeedbackPanel;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.CategoryService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
@@ -11,6 +11,7 @@ import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
@@ -24,12 +25,12 @@ public class EditCategory extends Panel {
             ServiceRegistry.get(CategoryService.class).save(this.getModelObject());
         }
     };
-    private final ValidationErrorFeedbackPanel validationFeedback;
+    private final FeedbackPanel validationFeedback;
 
     public EditCategory(String id) {
         super(id);
         this.form.setModel(new CompoundPropertyModel<>(new EntityModel<>(CategoryService.class)));
-        validationFeedback = new ValidationErrorFeedbackPanel("validationFeedback");
+        validationFeedback = new SgFeedbackPanel("validationFeedback");
     }
 
     @Override
