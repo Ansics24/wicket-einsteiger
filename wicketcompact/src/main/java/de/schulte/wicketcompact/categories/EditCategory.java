@@ -6,7 +6,10 @@ import de.schulte.wicketcompact.SgFeedbackPanel;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.services.CategoryService;
 import de.schulte.wicketcompact.services.ServiceRegistry;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxCallListener;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
@@ -53,6 +56,23 @@ public class EditCategory extends Panel {
             protected void onError(AjaxRequestTarget target) {
                 super.onError(target);
                 target.add(EditCategory.this.validationFeedback);
+            }
+
+            @Override
+            protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
+                super.updateAjaxAttributes(attributes);
+                attributes.getAjaxCallListeners().add(new AjaxCallListener() {
+
+                    @Override
+                    public CharSequence getBeforeSendHandler(Component component) {
+                        return String.format("$('#%s').attr('disabled', 'disabled');", getMarkupId());
+                    }
+
+                    @Override
+                    public CharSequence getCompleteHandler(Component component) {
+                        return String.format("$('#%s').removeAttr('disabled');", getMarkupId());
+                    }
+                });
             }
         });
     }
