@@ -1,5 +1,6 @@
 package de.schulte.wicketcompact.articles;
 
+import de.schulte.wicketcompact.Datepicker;
 import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.ValidationErrorFeedbackPanel;
 import de.schulte.wicketcompact.entities.Article;
@@ -89,8 +90,8 @@ public class EditArticle extends Panel {
         form.add(new DropDownChoice<>("category", new CategoryListModel(), new ChoiceRenderer<>("name", "id")).add(new PropertyValidator<>()));
         form.add(new TextArea<String>("description").add(new PropertyValidator<>()).setLabel(Model.of("Beschreibung")));
         form.add(new TextField<>("price").add(new PropertyValidator<>()).setLabel(Model.of("Preis")));
-        form.add(new TextField<>("validFrom").setLabel(Model.of("Gültig ab")).add(RangeValidator.maximum(LocalDate.now().plusMonths(3))));
-        form.add(new TextField<>("validTo").setLabel(Model.of("Gültig bis")).add(RangeValidator.minimum(LocalDate.now().plusDays(1))));
+        form.add(new Datepicker("validFrom").setLabel(Model.of("Gültig ab")).add(RangeValidator.maximum(LocalDate.now().plusMonths(3))));
+        form.add(new Datepicker("validTo").setLabel(Model.of("Gültig bis")).add(RangeValidator.minimum(LocalDate.now().plusDays(1))));
         form.add(this.imageUrl);
         form.add(this.image);
     }
