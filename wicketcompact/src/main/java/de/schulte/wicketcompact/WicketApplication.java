@@ -9,6 +9,7 @@ import de.schulte.wicketcompact.categories.ModifyCategoryPage;
 import de.schulte.wicketcompact.converter.BooleanConverter;
 import de.schulte.wicketcompact.converter.CurrencyConverter;
 import de.schulte.wicketcompact.converter.LocalDateConverter;
+import de.schulte.wicketcompact.orders.Menu;
 import de.schulte.wicketcompact.tables.CreateTablePage;
 import de.schulte.wicketcompact.tables.ModifyTablePage;
 import de.schulte.wicketcompact.tables.TablesPage;
@@ -58,6 +59,8 @@ public class WicketApplication extends WebApplication
 
 		mountPage("/table/${id}", ModifyTablePage.class);
 		mountPage("/table/new", CreateTablePage.class);
+
+        mountPage("/menu", Menu.class);
 	}
 
     @Override

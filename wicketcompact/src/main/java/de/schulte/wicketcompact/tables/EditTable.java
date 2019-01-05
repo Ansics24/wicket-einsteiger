@@ -48,7 +48,7 @@ public class EditTable extends Panel {
             @Override
             public String getObject() {
                 final Long id = EditTable.this.form.getModelObject().getId();
-                return id != null ? String.format("https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8000/table/%d", id) : null;
+                return id != null ? String.format("https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8000/menu?tableId=%d", id) : null;
             }
         });
     }
