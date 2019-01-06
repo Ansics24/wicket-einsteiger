@@ -1,3 +1,11 @@
 .navbar-brand img {
     height: 80px;
 }
+
+.menu-category-entry .menu-category-name {
+    line-height: 5rem;
+}
+
+.menu-category-entry img {
+    height: 5rem;
+}

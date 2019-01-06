@@ -18,3 +18,20 @@
     background-color: grey;
     padding: 0px 70px 0px 70px;
 }
+
+.menu-category-entry {
+    margin-bottom: 8rem;
+}
+
+.menu-category-entry .article-image {
+    height: 12rem;
+}
+
+.menu-category-name {
+    border-bottom: 1px solid #bee5eb;
+    padding-bottom: 1rem;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
