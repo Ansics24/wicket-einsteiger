@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
+    <wicket:head>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+    </wicket:head>
 </head>
 <body>
 <wicket:panel>
@@ -9,7 +17,26 @@
         <div class="card-body">
             <h5 wicket:id="name" class="card-title"></h5>
             <p wicket:id="description" class="card-text"></p>
-            <strong><p wicket:id="price" class="card-text"></p></strong>
+            <form wicket:id="orderForm" class="form-inline">
+                <button wicket:id="singleOrder" type="button" class="btn btn-primary mr-2">
+                    <span wicket:id="singleOrderLabel"></span>
+                </button>
+                <div class="dropdown">
+                    <button wicket:id="multiOrder" type="button" class="btn btn-secondary dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mehrfach bestellen
+                    </button>
+                    <div wicket:id="multiOrderDropdown" class="dropdown-menu">
+                        <div wicket:id="multiOrderListItem">
+                            <a wicket:id="multiOrderLink" class="dropdown-item" href="#">
+                                <span wicket:id="multiOrderQuantityLabel" class="badge badge-secondary"></span>
+                                <span wicket:id="multiOrderPriceLabel">Multi Order Label</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p wicket:id="orderConfirmation" class="alert alert-success">Deine Bestellung kommt in Kürze. Bis gleich</p>
         </div>
     </div>
 </wicket:panel>

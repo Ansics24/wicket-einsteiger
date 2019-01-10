@@ -1,5 +1,6 @@
 package de.schulte.wicketcompact.orders;
 
+import de.schulte.wicketcompact.EntityModel;
 import de.schulte.wicketcompact.categories.CategoriesDataProvider;
 import de.schulte.wicketcompact.entities.Category;
 import de.schulte.wicketcompact.entities.Table;
@@ -14,12 +15,15 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
+import org.apache.wicket.model.IModel;
 
 public class Menu extends WebPage {
 
     private final WebMarkupContainer tableNotSupportingOrderingHint;
 
     private final DataView<Category> categoryDataView;
+
+    private IModel<Table> tableModel = new EntityModel<Table, TableService>(TableService.class);
 
     public Menu() {
         this.tableNotSupportingOrderingHint = new WebMarkupContainer("tableNotSupportingOrderingHint");
@@ -38,10 +42,10 @@ public class Menu extends WebPage {
     protected void onInitialize() {
         super.onInitialize();
         final long tableId = getPageParameters().get("tableId").toLong();
-        final Table table = ServiceRegistry.get(TableService.class).get(tableId);
-        add(new Label("tableName", table.getName()));
+        tableModel.setObject(ServiceRegistry.get(TableService.class).get(tableId));
+        add(new Label("tableName", tableModel.getObject().getName()));
         add(this.tableNotSupportingOrderingHint);
-        tableNotSupportingOrderingHint.setVisible(!table.getOrderableElectronically());
+        tableNotSupportingOrderingHint.setVisible(!tableModel.getObject().getOrderableElectronically());
         add(categoryDataView);
     }
 
@@ -50,5 +54,15 @@ public class Menu extends WebPage {
         super.renderHead(response);
         response.render(CssHeaderItem.forReference(BootstrapCssResourceReference.get()));
         response.render(CssHeaderItem.forReference(DefaultTheme.get()));
+    }
+
+    public Table getTable() {
+        return this.tableModel.getObject();
+    }
+
+    @Override
+    protected void onDetach() {
+        super.onDetach();
+        this.tableModel.detach();
     }
 }

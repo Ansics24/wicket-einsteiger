@@ -4,6 +4,14 @@ import java.math.BigDecimal;
 
 public class Order extends BaseEntity {
 
+    public Order(Table table, Article article, Integer quantity) {
+        this.table = table;
+        this.article = article;
+        this.quantity = quantity;
+        this.status = OrderStatus.NEW;
+        this.totalPrice = article.getPrice().multiply(BigDecimal.valueOf(quantity));
+    }
+
     private Table table;
 
     private Article article;
