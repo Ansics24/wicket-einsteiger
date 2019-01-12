@@ -14,6 +14,32 @@
         </div>
     </div>
 
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Alle Bestellungen</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Tisch</th>
+                    <th scope="col">Aufgegeben</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody wicket:id="ordersParent">
+                <tr wicket:id="orders">
+                    <td><span wicket:id="quantity"></span></td>
+                    <td wicket:id="article.name"></td>
+                    <td wicket:id="table.name"></td>
+                    <td wicket:id="creationTime"></td>
+                    <td wicket:id="status.text" class="badge "></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </wicket:extend>
 </body>
 </html>

@@ -1,16 +1,11 @@
 package de.schulte.wicketcompact.entities;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class Order extends BaseEntity {
 
-    public Order(Table table, Article article, Integer quantity) {
-        this.table = table;
-        this.article = article;
-        this.quantity = quantity;
-        this.status = OrderStatus.NEW;
-        this.totalPrice = article.getPrice().multiply(BigDecimal.valueOf(quantity));
-    }
+    private LocalDateTime creationTime;
 
     private Table table;
 
@@ -21,6 +16,15 @@ public class Order extends BaseEntity {
     private OrderStatus status;
 
     private BigDecimal totalPrice;
+
+    public Order(Table table, Article article, Integer quantity) {
+        this.table = table;
+        this.article = article;
+        this.quantity = quantity;
+        this.status = OrderStatus.NEW;
+        this.totalPrice = article.getPrice().multiply(BigDecimal.valueOf(quantity));
+        this.creationTime = LocalDateTime.now();
+    }
 
     public Table getTable() {
         return table;
@@ -48,6 +52,14 @@ public class Order extends BaseEntity {
 
     public OrderStatus getStatus() {
         return status;
+    }
+
+    public LocalDateTime getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(LocalDateTime creationTime) {
+        this.creationTime = creationTime;
     }
 
     public void setStatus(OrderStatus status) {
