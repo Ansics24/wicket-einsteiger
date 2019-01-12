@@ -5,6 +5,7 @@ import de.schulte.wicketcompact.entities.OrderStatus;
 import de.schulte.wicketcompact.orders.OrdersDataProvider;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
+import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.tree.NestedTree;
@@ -50,9 +51,9 @@ public class HomePage extends BaseWebPage {
                 item.add(new Label("creationTime"));
                 final Label statusLabel = new Label("status.text");
                 item.add(statusLabel);
+                final Order order = item.getModelObject();
                 statusLabel.add(new AttributeAppender("class", () -> {
-                    final OrderStatus status = item.getModelObject().getStatus();
-                    switch (status) {
+                    switch (order.getStatus()) {
                         case NEW:
                             return " badge-danger";
                         case PREPARATION:
@@ -63,6 +64,19 @@ public class HomePage extends BaseWebPage {
                             return "";
                     }
                 }));
+                statusLabel.add(new AjaxEventBehavior("click") {
+                    @Override
+                    protected void onEvent(AjaxRequestTarget target) {
+                        final OrderStatus status = order.getStatus();
+                        if (status.equals(OrderStatus.NEW)) {
+                            order.setStatus(OrderStatus.PREPARATION);
+                        } else if (status.equals(OrderStatus.PREPARATION)) {
+                            order.setStatus(OrderStatus.DONE);
+                        }
+                        target.add(statusLabel);
+                    }
+                });
+                statusLabel.setOutputMarkupPlaceholderTag(true);
             }
         };
         this.ordersParent.setOutputMarkupPlaceholderTag(true);
