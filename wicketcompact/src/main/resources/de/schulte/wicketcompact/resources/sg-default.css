@@ -35,3 +35,17 @@
 .card {
     margin-bottom: 1rem;
 }
+
+#login-form-body {
+    background-image: url("https://images.freeimages.com/images/large-previews/42d/cafe-1485059.jpg");
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.login-form {
+    background-color: white;
+    width: 40%;
+    margin-top: 100px;
+    padding: 40px;
+}
