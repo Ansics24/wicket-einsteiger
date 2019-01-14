@@ -67,6 +67,8 @@ public class WicketApplication extends WebApplication
         mountPage("/menu", Menu.class);
 
         mountPage("/login", Login.class);
+
+        getRequestCycleListeners().add(new LoginAssertingRequestcycleListener());
 	}
 
     @Override
