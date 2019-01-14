@@ -1,8 +1,10 @@
 package de.schulte.wicketcompact.login;
 
 import de.schulte.wicketcompact.HomePage;
+import de.schulte.wicketcompact.SgSession;
 import de.schulte.wicketcompact.resources.BootstrapCssResourceReference;
 import de.schulte.wicketcompact.resources.DefaultTheme;
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
@@ -20,7 +22,9 @@ public class Login extends WebPage {
         @Override
         public void onSubmit() {
             super.onSubmit();
-            if ("mustermann".equals(username.getModelObject()) && password.getModelObject().equals("password")) {
+            final String username = Login.this.username.getModelObject();
+            if ("mustermann".equals(username) && password.getModelObject().equals("password")) {
+                ((SgSession) Session.get()).loginUser(username);
                 Login.this.setResponsePage(HomePage.class);
             }
         }

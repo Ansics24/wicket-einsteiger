@@ -16,9 +16,12 @@ import de.schulte.wicketcompact.tables.ModifyTablePage;
 import de.schulte.wicketcompact.tables.TablesPage;
 import org.apache.wicket.ConverterLocator;
 import org.apache.wicket.IConverterLocator;
+import org.apache.wicket.Session;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -65,6 +68,11 @@ public class WicketApplication extends WebApplication
 
         mountPage("/login", Login.class);
 	}
+
+    @Override
+    public Session newSession(Request request, Response response) {
+        return new SgSession(request);
+    }
 
     @Override
     protected IConverterLocator newConverterLocator() {

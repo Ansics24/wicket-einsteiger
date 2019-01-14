@@ -3,6 +3,7 @@ package de.schulte.wicketcompact;
 import de.schulte.wicketcompact.resources.BootstrapCssResourceReference;
 import de.schulte.wicketcompact.resources.CafeoneTheme;
 import de.schulte.wicketcompact.resources.DefaultTheme;
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
@@ -27,7 +28,10 @@ public abstract class BaseWebPage extends WebPage {
         super.onInitialize();
         this.tenant = Tenant.get();
         try {
-            ((HttpServletResponse) RequestCycle.get().getResponse().getContainerResponse()).sendRedirect("/login");
+            final SgSession session = (SgSession) Session.get();
+            if (!session.isUserLoggedIn()) {
+                ((HttpServletResponse) RequestCycle.get().getResponse().getContainerResponse()).sendRedirect("/login");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +41,7 @@ public abstract class BaseWebPage extends WebPage {
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
         response.render(CssHeaderItem.forReference(BootstrapCssResourceReference.get()));
-        if(tenant.equals(Tenant.DEFAULT)) {
+        if (tenant.equals(Tenant.DEFAULT)) {
             response.render(CssHeaderItem.forReference(DefaultTheme.get()));
         } else {
             response.render(CssHeaderItem.forReference(CafeoneTheme.get()));
