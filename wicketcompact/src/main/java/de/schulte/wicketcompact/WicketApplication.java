@@ -9,6 +9,7 @@ import de.schulte.wicketcompact.categories.ModifyCategoryPage;
 import de.schulte.wicketcompact.converter.BooleanConverter;
 import de.schulte.wicketcompact.converter.CurrencyConverter;
 import de.schulte.wicketcompact.converter.LocalDateConverter;
+import de.schulte.wicketcompact.exceptions.UnhandledExceptionPage;
 import de.schulte.wicketcompact.login.Login;
 import de.schulte.wicketcompact.orders.Menu;
 import de.schulte.wicketcompact.tables.CreateTablePage;
@@ -69,6 +70,7 @@ public class WicketApplication extends WebApplication
         mountPage("/login", Login.class);
 
         getRequestCycleListeners().add(new LoginAssertingRequestcycleListener());
+        getApplicationSettings().setInternalErrorPage(UnhandledExceptionPage.class);
 	}
 
     @Override
