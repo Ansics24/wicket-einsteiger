@@ -72,6 +72,11 @@ public class EditCategory extends Panel {
                     public CharSequence getCompleteHandler(Component component) {
                         return String.format("$('#%s').removeAttr('disabled');", getMarkupId());
                     }
+
+                    @Override
+                    public CharSequence getFailureHandler(Component component) {
+                        return "window.alert('Ooops es ist etwas schief gelaufen ... Versuchen Sie es gleich nocheinmal');";
+                    }
                 });
             }
         });
