@@ -7,19 +7,10 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MenuTest {
-
-    private WicketTester tester;
+public class MenuTest extends BasePageWithoutLoginTest {
 
     @Before
-    public void setUp() {
-        this.tester = new WicketTester(new WicketApplication() {
-
-            @Override
-            protected void setUpRequestCycleListeners() {
-                // no requestcycle listeners in tests
-            }
-        });
+    public void startHomePage() {
         tester.startPage(HomePage.class);
         tester.assertRenderedPage(HomePage.class);
     }

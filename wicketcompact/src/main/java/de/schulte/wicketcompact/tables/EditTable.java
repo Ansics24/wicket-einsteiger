@@ -88,7 +88,7 @@ public class EditTable extends Panel {
         radioGroup.add(choices);
     }
 
-    void setTable(Table table) {
+    public void setTable(Table table) {
         form.setModelObject(table);
     }
 
