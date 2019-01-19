@@ -27,4 +27,16 @@ public class CreateArticleTest extends BasePageWithoutLoginTest {
 
         tester.assertModelValue("articles:8:name", "Mineralwasser");
     }
+
+    @Test
+    public void validationMessages() {
+        final FormTester formTester = tester.newFormTester("editArticle:form");
+        formTester.select("category", 3);
+        formTester.setValue("price", "6,50");
+        formTester.setValue("imageUrl", "https://images.freeimages.com/images/large-previews/16e/black-tea-1319625.jpg");
+        formTester.setValue("description", "Ein namenloser Artikel");
+        formTester.submit();
+        tester.assertErrorMessages("Das Feld 'name' ist ein Pflichtfeld. Bitte geben Sie einen Wert ein.");
+    }
+
 }
