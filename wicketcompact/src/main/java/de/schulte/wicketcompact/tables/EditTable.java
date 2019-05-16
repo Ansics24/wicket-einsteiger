@@ -36,9 +36,18 @@ public class EditTable extends Panel {
         }
     };
 
-    private final Component qrCode = new WebMarkupContainer("qrCode").setOutputMarkupPlaceholderTag(true);
+    private AjaxCheckBox orderableElectronically;
 
     private AttributeModifier dataAttributeModifier;
+    private final Component qrCode = new WebMarkupContainer("qrCode") {
+
+        @Override
+        protected void onConfigure() {
+            super.onConfigure();
+            final Boolean modelObject = EditTable.this.orderableElectronically.getModelObject();
+            setVisible(modelObject == null ? false : modelObject);
+        }
+    }.setOutputMarkupPlaceholderTag(true);
 
     public EditTable(String id) {
         super(id);
@@ -59,18 +68,18 @@ public class EditTable extends Panel {
         add(form);
         add(new ValidationErrorFeedbackPanel("validationFeedback"));
         form.add(new TextField<String>("name").add(new PropertyValidator<>()));
-        form.add(new AjaxCheckBox("orderableElectronically") {
+        orderableElectronically = new AjaxCheckBox("orderableElectronically") {
 
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                EditTable.this.qrCode.setVisible(this.getModelObject());
                 target.add(EditTable.this.qrCode);
             }
 
-        }.add(new PropertyValidator<>()));
+        };
+        orderableElectronically.add(new PropertyValidator<>());
+        form.add(orderableElectronically);
         addSeatCountChoiceToForm();
         this.form.add(this.qrCode);
-        this.qrCode.setVisible(this.form.getModelObject().getId() != null);
         this.qrCode.add(dataAttributeModifier);
     }
 
