@@ -30,6 +30,10 @@ public abstract class BaseService<T extends BaseEntity> {
         return entity;
     }
 
+    public T delete(T entity) {
+        return this.entities.remove(entity.getId());
+    }
+
     public T get(Long id) {
         return entities.get(id);
     }

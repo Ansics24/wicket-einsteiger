@@ -8,6 +8,7 @@ import de.schulte.wicketcompact.services.TableService;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -40,6 +41,13 @@ public class EditTable extends Panel {
         form.add(new TextField<String>("name").add(new PropertyValidator<>()));
         form.add(new CheckBox("orderableElectronically").add(new PropertyValidator<>()));
         addSeatCountChoiceToForm();
+        form.add(new Link<String>("deleteTable") {
+            @Override
+            public void onClick() {
+                ServiceRegistry.get(TableService.class).delete(form.getModelObject());
+                setResponsePage(TablesPage.class);
+            }
+        });
     }
 
     private void addSeatCountChoiceToForm() {
